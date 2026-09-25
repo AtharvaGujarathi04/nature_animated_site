@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1f14" />
+    <title>Sprig — Where Nature Learns to Glow</title>
+    <meta name="description" content="A living forest, grown from a single seed. Placeholder copy." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="/media/forest-bg-poster.jpg" />
+  </head>
+  <body>
+    <!-- Preloader: sprout outline draws in as assets arrive -->
+    <div class="preloader" id="preloader" role="status" aria-live="polite">
+      <svg class="preloader__sprout" viewBox="0 0 120 140" aria-hidden="true">
+        <path class="preloader__soil" d="M20 122 Q60 106 100 122" />
+        <path class="preloader__path" pathLength="1"
+          d="M60 122 C60 104 60 90 60 76 M60 80 C44 76 26 64 22 44 C42 44 56 58 60 76 M60 72 C66 52 82 38 104 38 C100 60 80 72 60 76" />
+      </svg>
+      <p class="preloader__pct"><span id="preloader-pct">0</span>%</p>
+      <p class="preloader__label">Germinating</p>
+    </div>
+
+    <canvas class="webgl" id="webgl" aria-hidden="true"></canvas>
+    <img class="webgl-fallback" src="/media/forest-bg-poster.jpg" alt="" aria-hidden="true" />
+    <div class="flash" id="flash" aria-hidden="true"></div>
+    <canvas class="cursor" id="cursor" aria-hidden="true"></canvas>
+
+    <!-- Mascot speech bubble, positioned from the 3D scene -->
+    <div class="bubble" id="bubble" aria-live="polite"><span id="bubble-text">Hi! I'm Sprig.</span></div>
+
+    <header class="nav" id="nav">
+      <a class="nav__logo" href="#top" data-scroll-to="#top" aria-label="Sprig home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28V16M16 17c-6 0-9-4-10-9 6 0 9 3 10 9zm0 0c1-6 5-10 11-10-1 6-5 10-11 10z" /></svg>
+        <span>SPRIG</span>
+      </a>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span class="sr-only">Menu</span>
+      </button>
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        <a href="#about" data-scroll-to="#about">About</a>
+        <a href="#features" data-scroll-to="#features">Features</a>
+        <a href="#showcase" data-scroll-to="#showcase">Showcase</a>
+        <a class="nav__cta" href="#grow" data-scroll-to="#grow">Get started</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO: pinned; sprout sequence is scrubbed by scroll -->
+      <section class="hero" id="hero" aria-label="Intro">
+        <div class="hero__inner">
+          <div class="hero__copy">
+            <p class="eyebrow">// Bio-synthetic ecosystem v1.0</p>
+            <h1 class="hero__title">
+              <span class="hero__line holo" data-text="Where nature">Where nature</span>
+              <span class="hero__line hero__line--accent holo" data-text="learns to glow">learns to glow</span>
+            </h1>
+            <p class="hero__sub">Placeholder subheading. One seed, a little light and a lot of code, growing into something alive.</p>
+            <button class="chip" id="tilt-btn" hidden>Enable tilt parallax</button>
+          </div>
+          <div class="hero__stage">
+            <div class="portal">
+              <div class="portal__media">
+                <canvas class="portal__canvas" id="sprout-canvas" aria-label="A sprout growing into a smiling character"></canvas>
+                <img class="portal__poster portal__poster--first" src="/media/sprout-first.jpg" alt="" />
+                <img class="portal__poster portal__poster--last" src="/media/sprout-last.jpg" alt="A cute cartoon sprout character smiling on a soil mound" />
+              </div>
+              <div class="portal__hud" aria-hidden="true">
+                <span class="hud-corner tl"></span><span class="hud-corner tr"></span>
+                <span class="hud-corner bl"></span><span class="hud-corner br"></span>
+                <span class="hud-readout">GROWTH <b id="growth-pct">000</b>%</span>
+                <span class="hud-scan"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21V11M12 12c-4 0-6-3-6.5-6 4 0 6 2 6.5 6zm0 0c.6-4 3-6.5 7-6.5-.6 4-3 6.5-7 6.5z" /></svg>
+          <span>Scroll to grow</span>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section about" id="about" aria-labelledby="about-title">
+        <div class="glass about__card reveal">
+          <p class="eyebrow">// 01 — About</p>
+          <h2 id="about-title" class="section__title">A forest that <em>listens</em></h2>
+          <p>Placeholder paragraph. Describe the project here: what it is, who it's for and why it matters. Two or three sentences keep this card breathing.</p>
+          <p>Swap this copy in <code>index.html</code>. The card floats in the forest's middle layer and picks up the light around it.</p>
+          <dl class="stats">
+            <div><dt>Seeds planted</dt><dd>12.4k</dd></div>
+            <div><dt>Canopy uptime</dt><dd>99.9%</dd></div>
+            <div><dt>Carbon offset</dt><dd>3.1t</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="section features" id="features" aria-labelledby="features-title">
+        <header class="section__head reveal">
+          <p class="eyebrow">// 02 — Features</p>
+          <h2 id="features-title" class="section__title">Grown, not built</h2>
+        </header>
+        <div class="features__grid">
+          <article class="holo-card reveal" data-tilt>
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 42V22M24 24c-8 0-12-6-13-13 8 0 12 5 13 13zm0 0c1-8 6-13 14-13-1 8-6 13-14 13z" />
+              <circle cx="24" cy="42" r="2" /><path d="M14 42h20M8 34h6M34 34h6" />
+            </svg>
+            <h3>Living interface</h3>
+            <p>Placeholder feature copy. Short and specific: one idea per card.</p>
+            <span class="holo-card__sheen" aria-hidden="true"></span>
+          </article>
+          <article class="holo-card reveal" data-tilt>
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="5" /><ellipse cx="24" cy="24" rx="18" ry="7" />
+              <ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(60 24 24)" />
+              <ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(120 24 24)" />
+            </svg>
+            <h3>Symbiotic sync</h3>
+            <p>Placeholder feature copy. Every part talks to every other part.</p>
+            <span class="holo-card__sheen" aria-hidden="true"></span>
+          </article>
+          <article class="holo-card reveal" data-tilt>
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M4 30c6 0 6-8 12-8s6 8 12 8 6-8 12-8 4 4 4 4" />
+              <path d="M4 38c6 0 6-6 12-6s6 6 12 6 6-6 12-6" /><circle cx="36" cy="12" r="5" />
+              <path d="M36 3v2M36 19v2M27 12h2M43 12h2" />
+            </svg>
+            <h3>Solar powered</h3>
+            <p>Placeholder feature copy. Runs on sunlight and good intentions.</p>
+            <span class="holo-card__sheen" aria-hidden="true"></span>
+          </article>
+        </div>
+      </section>
+
+      <!-- SHOWCASE: pinned horizontal strip -->
+      <section class="showcase" id="showcase" aria-labelledby="showcase-title">
+        <div class="showcase__pin">
+          <header class="showcase__head">
+            <p class="eyebrow">// 03 — Showcase</p>
+            <h2 id="showcase-title" class="section__title">Into the canopy</h2>
+          </header>
+          <div class="showcase__track" id="showcase-track">
+            <article class="show-card" data-depth="1">
+              <div class="show-card__art" style="--hue: 95"></div>
+              <h3>Project one</h3><p>Placeholder caption.</p>
+            </article>
+            <article class="show-card" data-depth="0.6">
+              <div class="show-card__art" style="--hue: 170"></div>
+              <h3>Project two</h3><p>Placeholder caption.</p>
+            </article>
+            <article class="show-card" data-depth="1.3">
+              <div class="show-card__art" style="--hue: 45"></div>
+              <h3>Project three</h3><p>Placeholder caption.</p>
+            </article>
+            <article class="show-card" data-depth="0.8">
+              <div class="show-card__art" style="--hue: 120"></div>
+              <h3>Project four</h3><p>Placeholder caption.</p>
+            </article>
+            <article class="show-card" data-depth="1.15">
+              <div class="show-card__art" style="--hue: 185"></div>
+              <h3>Project five</h3><p>Placeholder caption.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section cta" id="grow" aria-labelledby="cta-title">
+        <div class="cta__inner reveal">
+          <p class="eyebrow">// 04 — The clearing</p>
+          <h2 id="cta-title" class="section__title cta__title">Plant your seed</h2>
+          <p>Placeholder call to action. One sentence about what happens when they click.</p>
+          <a class="glow-btn" href="#top">
+            <span>Start growing</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Sprig. Placeholder footer.</p>
+      <nav aria-label="Footer">
+        <a href="#about" data-scroll-to="#about">About</a>
+        <a href="#features" data-scroll-to="#features">Features</a>
+        <a href="#showcase" data-scroll-to="#showcase">Showcase</a>
+      </nav>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
